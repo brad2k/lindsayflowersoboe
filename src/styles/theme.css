@@ -1,0 +1,6 @@
+/* Overrides to fluff-css */
+
+:root {
+  --font-display: var(--font-Garamond);
+  --font-body: var(--font-WorkSans);
+}

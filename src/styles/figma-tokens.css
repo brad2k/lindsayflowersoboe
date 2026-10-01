@@ -1,0 +1,38 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --stone-200: #ece4dc;
+  --stone-100: rgba(0, 0, 0, 0.0784313725490196);
+  --stone-500: #726a62;
+  --stone-600: #5c534c;
+  --rose-600: #8a3763;
+  --white: #ffffff;
+  --cream-100: #f7f1ea;
+  --rose-500: #a8447a;
+  --ink-900: #2a2320;
+  --color-bg-canvas: #f7f1ea;
+  --color-bg-surface: #ece4dc;
+  --color-text-heading: #2a2320;
+  --color-text-body: #5c534c;
+  --color-text-muted: #726a62;
+  --color-text-accent: #a8447a;
+  --color-text-footer: #726a62;
+  --color-text-link: #2a2320;
+  --color-button-primary-bg: #a8447a;
+  --color-button-primary-bg-hover: #8a3763;
+  --color-button-primary-text: #ffffff;
+  --color-button-ghost-bg: rgba(255, 255, 255, 0);
+  --color-button-ghost-text: #2a2320;
+  --color-border-border: rgba(0, 0, 0, 0.0784313725490196);
+  --color-nav-text: #2a2320;
+  --color-nav-hover-bg: rgba(42, 35, 32, 0.14901960784313725);
+  --layout-max-width: 61rem;
+  --space-lg: 3.75rem;
+  --space-md: 1.875rem;
+  --space-sm: 1.25rem;
+  --space-xs: 0.938rem;
+  --space-2xs: 0.625rem;
+  --space-3xs: 0.313rem;
+}

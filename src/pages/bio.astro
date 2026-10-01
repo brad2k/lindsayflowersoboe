@@ -1,0 +1,15 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+
+export const prerender = true;
+
+const [page] = await getCollection("bio");
+const { pageTitle, pageDescription, eyebrow, heading } = page.data;
+---
+
+<Layout title={pageTitle}>
+  <p>{eyebrow}</p>
+  <h1>{heading}</h1>
+  <p>{pageDescription}</p>
+</Layout>

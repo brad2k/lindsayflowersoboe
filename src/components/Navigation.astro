@@ -1,0 +1,45 @@
+---
+import { Flower } from "@lucide/astro";
+import NavigationLink from "./NavigationLink.astro";
+
+const navItems = [
+  {
+    label: "Bio",
+    href: "/bio/",
+  },
+  {
+    label: "Teaching",
+    href: "/teaching/",
+  },
+  {
+    label: "Media",
+    href: "/media/",
+  },
+];
+---
+
+<header class="primary-nav">
+  <div class="wrapper repel">
+    <a href="/" class="center-xy"
+      ><Flower /> <span class="logo-text">Lindsay Flowers</span></a
+    >
+    <nav aria-label="Primary">
+      <ul class="cluster">
+        {
+          navItems.map((i) => (
+            <li>
+              <NavigationLink href={i.href}>{i.label}</NavigationLink>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .primary-nav {
+    border-bottom: 1px solid var(--stone-100);
+    padding-block: var(--space-s);
+  }
+</style>

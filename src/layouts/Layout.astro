@@ -1,0 +1,43 @@
+---
+import "../styles/index.css";
+import "../components/Navigation.astro";
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+import { Font } from "astro:assets";
+
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <Font cssVariable="--font-Garamond" preload />
+    <Font cssVariable="--font-WorkSans" preload />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Navigation />
+    <main id="main"><div class="wrapper"><slot /></div></main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+  }
+</style>

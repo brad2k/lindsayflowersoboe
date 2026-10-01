@@ -1,0 +1,132 @@
+{
+  "Space @min": {
+    "3XS": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "0.313rem"
+    },
+    "2XS": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "0.563rem"
+    },
+    "XS": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "0.875rem"
+    },
+    "S": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "1.125rem"
+    },
+    "M": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "1.688rem"
+    },
+    "L": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "2.25rem"
+    },
+    "XL": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "3.375rem"
+    },
+    "2XL": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "4.5rem"
+    },
+    "3XL": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "6.75rem"
+    }
+  },
+  "Space @max": {
+    "3XS": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "0.313rem"
+    },
+    "2XS": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "0.625rem"
+    },
+    "XS": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "0.938rem"
+    },
+    "S": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "1.25rem"
+    },
+    "M": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "1.875rem"
+    },
+    "L": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "2.5rem"
+    },
+    "XL": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "3.75rem"
+    },
+    "2XL": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "5rem"
+    },
+    "3XL": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "7.5rem"
+    }
+  }
+}
