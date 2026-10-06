@@ -2,13 +2,16 @@ import markdoc from "@astrojs/markdoc";
 import node from "@astrojs/node";
 import react from "@astrojs/react";
 import keystatic from "@keystatic/astro";
-import { defineConfig, fontProviders } from "astro/config";
+import { defineConfig, fontProviders, svgoOptimizer } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.lindsayflowersoboe.com/",
   output: "static",
+  experimental: {
+    svgOptimizer: svgoOptimizer(),
+  },
   fonts: [
     {
       name: "Cormorant Garamond",
