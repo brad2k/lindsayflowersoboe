@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import HeroImage from "../images/lindsay-flowers-home.png";
+import Button from "../components/Button.astro";
+
+const [page] = await getCollection("home");
+const { pageTitle, pageDescription, eyebrow, heading, heroSummary } = page.data;
+// const concerts = (await getCollection("concerts")).sort(
+//   (a, b) => a.data.date.valueOf() - b.data.date.valueOf()
+// );
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <section class="page-wrapper auto-grid">
+    <div class="stack hero-text">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1 class="heading">{heading}</h1>
+      <p>{heroSummary}</p>
+      <Button href="/bio/">View bio</Button>
+    </div>
+
+    <Image src={HeroImage} alt="Lindsay Flowers holding an oboe" priority />
+  </section>
+</Layout>
+
+<style>
+  .page-wrapper {
+    --fc-grid-space: var(--fc-space-2xl);
+    container-type: inline-size;
+
+    @container (width < 36.66rem) {
+      & > img {
+        order: -1;
+      }
+    }
+  }
+
+  .hero-text {
+    --fc-stack-space: var(--fc-space-m);
+    justify-content: center;
+  }
+</style>

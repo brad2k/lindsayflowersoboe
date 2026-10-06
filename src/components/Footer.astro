@@ -1,0 +1,112 @@
+---
+import { navItems } from "./Navigation.astro";
+import Link from "./Link.astro";
+import Oboe from "../images/oboe.svg";
+const emailAddress = "lindsay.flowers@wisc.edu";
+---
+
+<footer aria-label="Primary">
+  <div class="wrapper repel">
+    <div class="footer-left stack">
+      <span>© 2026 Lindsay Flowers</span><Oboe aria-hidden />
+    </div>
+    <div class="footer-right">
+      <nav class="stack" aria-labelledby="footer-connect">
+        <h3 class="footer-category" id="footer-connect">Connect</h3>
+        <ul class="footer-list stack">
+          <li>
+            <a
+              href={`mailto:${emailAddress}?subject=Hello`}
+              aria-label={`Send an email to ${emailAddress}`}
+            >
+              <span>Email</span>
+              <span class="visually-hidden">Opens in new window</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.instagram.com/lindsayflowerskoh/"
+              rel="external noopener"
+              target="_blank"
+            >
+              <span>Instagram</span>
+              <span class="visually-hidden">Opens in new window</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.youtube.com/@LindsayFlowersOboe"
+              rel="external noopener"
+              target="_blank"
+            >
+              <span>YouTube</span>
+              <span class="visually-hidden">Opens in new window</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <nav class="stack" aria-labelledby="footer-explore">
+        <h3 class="footer-category" id="footer-explore">Explore</h3>
+        <ul class="footer-list stack">
+          <!-- <li><a href="/">Home</a></li> -->
+          {
+            navItems.map((i) => (
+              <li>
+                <Link href={i.href}>{i.label}</Link>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <style>
+    footer {
+      margin-block-start: auto;
+      color: var(--color-text-footer);
+      border-top: 1px solid var(--color-border-border);
+      padding-block: var(--fc-space-s);
+      font-size: var(--fc-step--1);
+
+      a:hover {
+        text-decoration-line: underline;
+        text-underline-offset: var(--offset-text-underline);
+      }
+    }
+
+    .wrapper {
+      --fc-repel-space: var(--fc-space-l);
+    }
+
+    .footer-left {
+      align-self: start;
+    }
+
+    .footer-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--fc-space-xl);
+    }
+
+    nav {
+      --fc-stack-space: var(--fc-space-xs);
+
+      a {
+        color: var(--color-text-footer);
+      }
+    }
+
+    .footer-category {
+      font-weight: var(--fc-font-weight-semi-bold);
+      font-family: var(--font-body);
+      font-size: inherit;
+      text-transform: uppercase;
+      color: currentColor;
+    }
+
+    .footer-list {
+      --fc-stack-space: var(--fc-space-3xs);
+    }
+  </style>
+</footer>

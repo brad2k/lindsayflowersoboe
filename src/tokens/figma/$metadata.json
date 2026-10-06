@@ -1,0 +1,10 @@
+{
+  "tokenSetOrder": [
+    "global",
+    "Tokens/Light",
+    "Palette/Light",
+    "Type primitives/Mode 1",
+    "Space primitives/Mode 1",
+    "Fluid tokens/Mode 1"
+  ]
+}

@@ -1,0 +1,452 @@
+{
+  "Min space size": {
+    "3XS": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "space-3xs"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Space @min.3XS}"
+    },
+    "2XS": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "space-2xs"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Space @min.2XS}"
+    },
+    "XS": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "space-xs"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Space @min.XS}"
+    },
+    "S": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "space-s"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Space @min.S}"
+    },
+    "M": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "space-m"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Space @min.M}"
+    },
+    "L": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "space-l"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Space @min.L}"
+    },
+    "XL": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "space-xl"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Space @min.XL}"
+    },
+    "2XL": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "space-2xl"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Space @min.2XL}"
+    },
+    "3XL": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "space-3xl"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Space @min.3XL}"
+    }
+  },
+  "Max space size": {
+    "3XS": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "space-3xs"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Space @max.3XS}"
+    },
+    "2XS": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "space-2xs"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Space @max.2XS}"
+    },
+    "XS": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "space-xs"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Space @max.XS}"
+    },
+    "S": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "space-s"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Space @max.S}"
+    },
+    "M": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "space-m"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Space @max.M}"
+    },
+    "L": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "space-l"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Space @max.L}"
+    },
+    "XL": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "space-xl"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Space @max.XL}"
+    },
+    "2XL": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "space-2xl"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Space @max.2XL}"
+    },
+    "3XL": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "space-3xl"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Space @max.3XL}"
+    }
+  },
+  "Min font size": {
+    "Step 5": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "step-5"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Font size @min.Step 5}"
+    },
+    "Step 4": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "step-4"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Font size @min.Step 4}"
+    },
+    "Step 3": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "step-3"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Font size @min.Step 3}"
+    },
+    "Step 2": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "step-2"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Font size @min.Step 2}"
+    },
+    "Step 1": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "step-1"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Font size @min.Step 1}"
+    },
+    "Step 0": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "step-0"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Font size @min.Step 0}"
+    },
+    "Step -1": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "step--1"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Font size @min.Step -1}"
+    },
+    "Step -2": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "step--2"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Font size @min.Step -2}"
+    }
+  },
+  "Max font size": {
+    "Step 5": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "step-5"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Font size @max.Step 5}"
+    },
+    "Step 4": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "step-4"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Font size @max.Step 4}"
+    },
+    "Step 3": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "step-3"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Font size @max.Step 3}"
+    },
+    "Step 2": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "step-2"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Font size @max.Step 2}"
+    },
+    "Step 1": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "step-1"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Font size @max.Step 1}"
+    },
+    "Step 0": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "step-0"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Font size @max.Step 0}"
+    },
+    "Step -1": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "step--1"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Font size @max.Step -1}"
+    },
+    "Step -2": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false,
+        "com.figma.codeSyntax": {
+          "Web": "step--2"
+        }
+      },
+      "$type": "dimension",
+      "$value": "{Font size @max.Step -2}"
+    }
+  }
+}

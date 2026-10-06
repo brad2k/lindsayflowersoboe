@@ -1,0 +1,123 @@
+---
+import "../styles/index.css";
+import "../components/Navigation.astro";
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+import { Font, getImage } from "astro:assets";
+import socialImage from "../images/lindsay-flowers-social.jpg";
+
+export interface Props {
+  title: string;
+  description?: string;
+  wrapperClass?: string | string[];
+}
+
+const { title, description, wrapperClass } = Astro.props;
+const optimizedImage = await getImage({ src: socialImage });
+const defaultDescription =
+  "Assistant Professor of Oboe at the University of Wisconsin–Madison Mead Witter School of Music, recording artist, and ensemble performer";
+const pageDescription = description || defaultDescription;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={pageDescription} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={pageDescription} />
+    <meta
+      property="og:image"
+      content={new URL(optimizedImage.src, Astro.url)}
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Lindsay Flowers in a black shirt holding two oboes against a cream stone wall."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <title>{title}</title>
+    <Font cssVariable="--font-Garamond" preload />
+    <Font cssVariable="--font-WorkSans" preload />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Lindsay Flowers",
+        "jobTitle": "Assistant Professor of Oboe",
+        "description": "Assistant Professor of Oboe at the University of Wisconsin–Madison Mead Witter School of Music, recording artist, and ensemble performer",
+        "image": "https://www.lindsayflowersoboe.com/images/lindsay-flowers-social.jpg",
+        "url": "https://www.lindsayflowersoboe.com/",
+        "email": "mailto:lindsay.flowers@wisc.edu",
+        "affiliation": [
+          {
+            "@type": "EducationalOrganization",
+            "name": "University of Wisconsin–Madison Mead Witter School of Music",
+            "url": "https://music.wisc.edu/"
+          },
+          {
+            "@type": "MusicGroup",
+            "name": "Madison Symphony Orchestra",
+            "url": "https://madisonsymphony.org/"
+          },
+          {
+            "@type": "MusicGroup",
+            "name": "Wisconsin Chamber Orchestra",
+            "url": "https://wcoconcerts.org/"
+          },
+          {
+            "@type": "EducationalOrganization",
+            "name": "Interlochen Center for the Arts",
+            "url": "https://www.interlochen.org/"
+          }
+        ],
+        "alumniOf": {
+          "@type": "EducationalOrganization",
+          "name": "Indiana University"
+        },
+        "award": "F. Lorée Artist",
+        "knowsAbout": ["Oboe", "English Horn", "Woodwind Performance"],
+        "sameAs": [
+          "https://music.wisc.edu/staff/flowers-lindsay/",
+          "https://madisonsymphony.org/about/performers/msomusicianroster/",
+          "https://wcoconcerts.org/profiles/lindsay-flowers",
+          "https://www.instagram.com/lindsayflowerskoh/",
+          "https://www.youtube.com/@LindsayFlowersOboe"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Navigation />
+    <main id="main">
+      <div class:list={["wrapper", wrapperClass]}><slot /></div>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-bg-canvas);
+    font-family: var(--font-body);
+    color: var(--color-text-body);
+  }
+
+  main {
+    padding-block: var(--fc-space-s-2xl);
+  }
+
+  .wrapper {
+    --fc-stack-space: var(--fc-space-m-2xl);
+  }
+</style>

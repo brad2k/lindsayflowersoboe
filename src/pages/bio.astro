@@ -1,0 +1,34 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import HeroImage from "../images/lindsay-flowers-bio.png";
+
+const [page] = await getCollection("bio");
+const { pageTitle, pageDescription, eyebrow, heading, heroSummary } = page.data;
+const { Content } = await render(page);
+---
+
+<Layout title={pageTitle} description={pageDescription} wrapperClass="stack">
+  <section class="page-wrapper auto-grid">
+    <Image src={HeroImage} alt="Lindsay Flowers holding two oboes" priority />
+    <div class="stack hero-text">
+      <h1 class="eyebrow">{eyebrow}</h1>
+      <h2 class="heading">{heading}</h2>
+      <p>{heroSummary}</p>
+    </div>
+  </section>
+
+  <Content />
+</Layout>
+
+<style>
+  .page-wrapper {
+    --fc-grid-space: var(--fc-space-2xl);
+  }
+
+  .hero-text {
+    --fc-stack-space: var(--fc-space-m);
+    justify-content: center;
+  }
+</style>

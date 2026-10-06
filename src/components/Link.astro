@@ -1,0 +1,44 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import clsx from "clsx";
+
+interface Props extends HTMLAttributes<"a"> {
+  href: string;
+}
+
+const { pathname } = Astro.url;
+const { href, target, rel, ...props } = Astro.props;
+const active = href === "/" ? pathname === "/" : pathname.startsWith(href);
+
+function isExternal(path: string): boolean {
+  try {
+    // Uses Astro.url.origin as the fallback base URL for relative paths
+    const url = new URL(path, Astro.url.origin);
+
+    // Checks if the protocol is HTTP/HTTPS and origin differs from local site
+    return (
+      (url.protocol === "http:" || url.protocol === "https:") &&
+      url.origin !== Astro.url.origin
+    );
+  } catch {
+    return false;
+  }
+}
+
+const external = isExternal(href);
+
+// Apply external defaults if target/rel aren't explicitly passed
+const computedTarget = target ?? (external ? "_blank" : undefined);
+const computedRel = rel ?? (external ? "noopener noreferrer" : undefined);
+---
+
+<a
+  {...props}
+  href={href}
+  class={clsx({ active })}
+  aria-current={active ? "page" : "false"}
+  {...computedTarget && { target: computedTarget }}
+  {...computedRel && { rel: computedRel }}
+>
+  <slot />
+</a>

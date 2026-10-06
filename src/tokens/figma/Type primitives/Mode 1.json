@@ -1,0 +1,140 @@
+{
+  "Font family": {
+    "Body": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false
+      },
+      "$type": "text",
+      "$value": "Work Sans"
+    },
+    "Heading": {
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.hiddenFromPublishing": false
+      },
+      "$type": "text",
+      "$value": "Cormorant Garamond"
+    }
+  },
+  "Font size @min": {
+    "Step 5": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "2.799rem"
+    },
+    "Step 4": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "2.333rem"
+    },
+    "Step 3": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "1.944rem"
+    },
+    "Step 2": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "1.62rem"
+    },
+    "Step 1": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "1.35rem"
+    },
+    "Step 0": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "1.125rem"
+    },
+    "Step -1": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "0.938rem"
+    },
+    "Step -2": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "0.781rem"
+    }
+  },
+  "Font size @max": {
+    "Step 5": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "3.815rem"
+    },
+    "Step 4": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "3.052rem"
+    },
+    "Step 3": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "2.441rem"
+    },
+    "Step 2": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "1.953rem"
+    },
+    "Step 1": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "1.563rem"
+    },
+    "Step 0": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "1.25rem"
+    },
+    "Step -1": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "1rem"
+    },
+    "Step -2": {
+      "$extensions": {
+        "com.figma.hiddenFromPublishing": true
+      },
+      "$type": "dimension",
+      "$value": "0.8rem"
+    }
+  }
+}
