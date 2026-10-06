@@ -1,45 +1,201 @@
 ---
-import { Flower } from "@lucide/astro";
-import NavigationLink from "./NavigationLink.astro";
+import { Flower, Menu, X } from "@lucide/astro";
+import Link from "./Link.astro";
 
-const navItems = [
+export const navItems = [
+  {
+    label: "Home",
+    href: "/",
+  },
   {
     label: "Bio",
     href: "/bio/",
   },
-  {
-    label: "Teaching",
-    href: "/teaching/",
-  },
-  {
-    label: "Media",
-    href: "/media/",
-  },
+  // {
+  //   label: "Teaching",
+  //   href: "/teaching/",
+  // },
+  // {
+  //   label: "Media",
+  //   href: "/media/",
+  // },
 ];
 ---
 
 <header class="primary-nav">
   <div class="wrapper repel">
-    <a href="/" class="center-xy"
-      ><Flower /> <span class="logo-text">Lindsay Flowers</span></a
-    >
-    <nav aria-label="Primary">
-      <ul class="cluster">
+    <a href="/" class="cluster" aria-label="Homepage">
+      <Flower class="logo-icon" />
+      <span class="logo-text">Lindsay Flowers</span>
+    </a>
+    <nav aria-label="Primary" class="desktop-nav">
+      <ul class="nav-links cluster">
         {
           navItems.map((i) => (
             <li>
-              <NavigationLink href={i.href}>{i.label}</NavigationLink>
+              <Link href={i.href}>{i.label}</Link>
             </li>
           ))
         }
       </ul>
     </nav>
+    <button
+      type="button"
+      class="icon-button menu-toggle"
+      aria-label="Open menu"
+      aria-controls="nav-drawer"
+      data-open-drawer
+    >
+      <Menu />
+    </button>
   </div>
 </header>
+
+<dialog id="nav-drawer" class="nav-drawer" aria-label="Menu">
+  <button
+    type="button"
+    class="icon-button drawer-close"
+    aria-label="Close menu"
+    data-close-drawer
+  >
+    <X />
+  </button>
+  <nav aria-label="Primary">
+    <ul class="drawer-links">
+      {
+        navItems.map((i) => (
+          <li>
+            <Link href={i.href}>{i.label}</Link>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</dialog>
+
+<script>
+  const drawer = document.querySelector<HTMLDialogElement>("#nav-drawer");
+
+  document
+    .querySelector("[data-open-drawer]")
+    ?.addEventListener("click", () => drawer?.showModal());
+  drawer
+    ?.querySelector("[data-close-drawer]")
+    ?.addEventListener("click", () => drawer.close());
+</script>
 
 <style>
   .primary-nav {
     border-bottom: 1px solid var(--stone-100);
-    padding-block: var(--space-s);
+    padding-block: var(--fc-space-s);
+  }
+
+  .logo-text {
+    font-family: var(--font-display);
+    font-size: var(--fc-step-3);
+    color: var(--color-text-heading);
+  }
+
+  .logo-icon {
+    height: 1.625rem;
+    width: 1.625rem;
+  }
+
+  .nav-links {
+    --fc-cluster-space: var(--fc-space-l);
+  }
+
+  .icon-button {
+    display: grid;
+    place-items: center;
+    padding: var(--fc-space-2xs);
+    background: none;
+    border: 0;
+    color: var(--color-text-heading);
+    cursor: pointer;
+  }
+
+  /* Drawer on small screens, inline links from 40rem up */
+  .menu-toggle {
+    @media (min-width: 40rem) {
+      display: none;
+    }
+  }
+
+  .desktop-nav {
+    display: none;
+
+    @media (min-width: 40rem) {
+      display: block;
+    }
+  }
+
+  .nav-drawer {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: var(--fc-space-m);
+    border: 0;
+    background: var(--color-bg-canvas);
+
+    /* Keep display from overriding the closed state of <dialog> */
+    &:not([open]) {
+      display: none;
+    }
+
+    /* If the viewport grows past the breakpoint while open, hide it */
+    @media (min-width: 40rem) {
+      display: none;
+    }
+  }
+
+  .drawer-close {
+    position: absolute;
+    top: var(--fc-space-m);
+    right: var(--fc-space-m);
+  }
+
+  .drawer-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fc-space-m);
+    margin-block-start: var(--fc-space-3xl);
+    padding: 0;
+    list-style: none;
+    font-size: var(--fc-step-2);
+  }
+
+  nav {
+    a {
+      color: var(--color-nav-text);
+      text-underline-offset: var(--offset-text-underline);
+      text-decoration-color: color-mix(in srgb, currentColor 10%, transparent);
+      transition:
+        text-underline-offset var(--fc-animation-transition-snappy),
+        text-decoration-color var(--fc-animation-transition-snappy);
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          color: var(--color-text-link);
+          text-decoration-line: underline;
+          text-decoration-color: currentColor;
+          text-underline-offset: 0.25em;
+        }
+      }
+    }
+
+    [aria-current="page"] {
+      text-decoration-line: underline;
+      text-decoration-color: currentColor;
+      text-underline-offset: 0.25em;
+    }
   }
 </style>

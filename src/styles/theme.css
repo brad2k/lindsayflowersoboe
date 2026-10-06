@@ -3,4 +3,11 @@
 :root {
   --font-display: var(--font-Garamond);
   --font-body: var(--font-WorkSans);
+
+  --offset-text-underline: 0.18em;
+}
+
+:is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--font-display);
+  color: var(--color-text-heading);
 }

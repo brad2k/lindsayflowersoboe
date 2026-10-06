@@ -25,12 +25,24 @@ const home = defineCollection({
     pattern: "index.{yaml,yml,json}",
     base: "./src/content/home",
   }),
-  schema: singletonPageSchema,
+  schema: z.object({
+    pageTitle: z.string(),
+    pageDescription: z.string(),
+    eyebrow: z.string(),
+    heading: z.string(),
+    heroSummary: z.string(),
+  }),
 });
 
 const bio = defineCollection({
-  loader: glob({ pattern: "index.{yaml,yml,json}", base: "./src/content/bio" }),
-  schema: singletonPageSchema,
+  loader: glob({ pattern: "index.mdoc", base: "./src/content/bio" }),
+  schema: z.object({
+    pageTitle: z.string(),
+    pageDescription: z.string(),
+    eyebrow: z.string(),
+    heading: z.string(),
+    heroSummary: z.string(),
+  }),
 });
 
 const media = defineCollection({

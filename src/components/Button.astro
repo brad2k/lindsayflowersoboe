@@ -1,0 +1,60 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props =
+  | ({ href: string } & HTMLAttributes<"a">)
+  | ({ href?: never } & HTMLAttributes<"button">);
+
+const { href, ...props } = Astro.props;
+---
+
+{
+  href ? (
+    <a class="button" href={href} {...(props as HTMLAttributes<"a">)}>
+      <slot />
+    </a>
+  ) : (
+    <button
+      class="button"
+      type="button"
+      {...(props as HTMLAttributes<"button">)}
+    >
+      <slot />
+    </button>
+  )
+}
+
+<style>
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--fc-space-2xs);
+    padding: var(--fc-space-xs) var(--fc-space-s);
+    border: 0;
+    background-color: var(--color-button-primary-bg);
+    color: var(--color-button-primary-text);
+    font-family: var(--font-body);
+    font-weight: var(--fc-font-weight-semi-bold);
+    font-size: var(--fc-step--1);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color var(--fc-animation-transition-snappy);
+    width: fit-content;
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--color-button-primary-bg-hover);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-button-primary-bg);
+      outline-offset: 2px;
+    }
+  }
+</style>

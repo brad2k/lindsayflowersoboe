@@ -30,6 +30,6 @@ export default defineConfig({
     },
   ],
 
-  adapter: node({ mode: "standalone" }), // probably don't need
+  adapter: node({ mode: "standalone" }), // required for Keystatic's on-demand admin routes to build; Netlify never runs it as long as the publish dir is dist/client
   integrations: [react(), markdoc(), keystatic(), sitemap()],
 });

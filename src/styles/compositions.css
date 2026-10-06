@@ -2,3 +2,18 @@
   max-width: min(var(--layout-max-width), 100% - (var(--space-md) * 2));
   margin-inline: auto;
 }
+
+.eyebrow {
+  text-transform: uppercase;
+  color: var(--color-text-accent);
+  font-weight: 600;
+  font-family: var(--font-body);
+  font-size: var(--fc-step--1);
+  letter-spacing: 0.08em;
+}
+
+.heading {
+  font-size: var(--fc-step-5);
+  letter-spacing: -0.02em;
+  font-weight: var(--fc-font-weight-regular);
+}

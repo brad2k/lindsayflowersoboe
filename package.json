@@ -11,27 +11,29 @@
   "scripts": {
     "dev": "npm run build:tokens && astro dev",
     "build": "npm run build:tokens && astro build",
-    "build:tokens": "node ./build-tokens.ts"
+    "build:tokens": "node ./build-tokens.ts",
+    "preview": "npm run build && astro preview"
   },
   "dependencies": {
-    "@astrojs/markdoc": "^2.0.9",
-    "@astrojs/node": "^11.1.6",
-    "@astrojs/react": "^6.0.6",
+    "@astrojs/markdoc": "^2.0.10",
+    "@astrojs/node": "^11.1.7",
+    "@astrojs/react": "^7.0.1",
     "@keystatic/astro": "^6.0.0",
     "@keystatic/core": "^0.6.7",
-    "@lucide/astro": "^1.48.0",
+    "@lucide/astro": "^1.52.0",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
-    "astro": "^7.3.3",
+    "astro": "^7.3.6",
     "clsx": "^2.1.1",
-    "fluff-css": "github:brad2k/fluff-css",
+    "fluff-css": "github:brad2k/fluff-css#v0.3.6",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },
   "devDependencies": {
     "@astrojs/sitemap": "^3.7.4",
     "@tokens-studio/sd-transforms": "^2.0.3",
-    "@types/node": "^26.6.3",
-    "style-dictionary": "^5.5.5"
+    "@types/node": "^26.6.4",
+    "sharp": "^0.35.5",
+    "style-dictionary": "^5.6.0"
   }
 }
