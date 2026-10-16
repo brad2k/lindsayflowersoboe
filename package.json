@@ -15,25 +15,26 @@
     "preview": "npm run build && astro preview"
   },
   "dependencies": {
-    "@astrojs/markdoc": "^2.0.10",
-    "@astrojs/node": "^11.1.7",
-    "@astrojs/react": "^7.0.1",
+    "@astrojs/markdoc": "^2.1.0",
+    "@astrojs/node": "^11.1.8",
+    "@astrojs/react": "^7.1.0",
     "@keystatic/astro": "^6.0.0",
     "@keystatic/core": "^0.6.7",
-    "@lucide/astro": "^1.52.0",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.4",
-    "astro": "^7.3.6",
+    "@lucide/astro": "^1.58.0",
+    "@markdoc/markdoc": "^0.5.10",
+    "astro": "^7.4.0",
     "clsx": "^2.1.1",
     "fluff-css": "github:brad2k/fluff-css#v0.3.6",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
     "@astrojs/sitemap": "^3.7.4",
     "@tokens-studio/sd-transforms": "^2.0.3",
-    "@types/node": "^26.6.4",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
     "sharp": "^0.35.5",
-    "style-dictionary": "^5.6.0"
+    "style-dictionary": "^5.7.0"
   }
 }

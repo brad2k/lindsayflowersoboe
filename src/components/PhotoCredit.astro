@@ -1,0 +1,32 @@
+---
+import { Camera } from "@lucide/astro";
+
+type Props = { credit?: string };
+
+const { credit } = Astro.props;
+---
+
+{
+  credit && (
+    <figcaption>
+      <Camera />
+      <span class="visually-hidden">Photo credit:</span>
+      <span>{credit}</span>
+    </figcaption>
+  )
+}
+
+<style>
+  figcaption {
+    font-size: var(--font-size-subtle);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3xs);
+    margin-block-start: var(--space-3xs);
+
+    svg {
+      width: 1em;
+      height: 1em;
+    }
+  }
+</style>

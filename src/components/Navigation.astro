@@ -11,10 +11,10 @@ export const navItems = [
     label: "Bio",
     href: "/bio/",
   },
-  // {
-  //   label: "Teaching",
-  //   href: "/teaching/",
-  // },
+  {
+    label: "Teaching",
+    href: "/teaching/",
+  },
   // {
   //   label: "Media",
   //   href: "/media/",
@@ -23,7 +23,12 @@ export const navItems = [
 ---
 
 <header class="primary-nav">
-  <div class="wrapper repel">
+  <div class="uw-eyebrow">
+    <p class="wrapper">
+      <Link href="https://www.wisc.edu/">University of Wisconsin–Madison</Link>
+    </p>
+  </div>
+  <div class="wrapper repel nav-wrapper">
     <a href="/" class="cluster" aria-label="Homepage">
       <Flower class="logo-icon" />
       <span class="logo-text">Lindsay Flowers</span>
@@ -31,11 +36,13 @@ export const navItems = [
     <nav aria-label="Primary" class="desktop-nav">
       <ul class="nav-links cluster">
         {
-          navItems.map((i) => (
-            <li>
-              <Link href={i.href}>{i.label}</Link>
-            </li>
-          ))
+          navItems
+            .filter((i) => i.label !== "Home")
+            .map((i) => (
+              <li>
+                <Link href={i.href}>{i.label}</Link>
+              </li>
+            ))
         }
       </ul>
     </nav>
@@ -86,13 +93,22 @@ export const navItems = [
 
 <style>
   .primary-nav {
-    border-bottom: 1px solid var(--stone-100);
+    border-bottom: 1px solid var(--color-border-border);
+  }
+
+  .uw-eyebrow {
+    font-size: var(--font-size-subtle);
+    border-bottom: 1px solid var(--color-border-border);
+    padding-block: var(--space-3xs);
+  }
+
+  .nav-wrapper {
     padding-block: var(--fc-space-s);
   }
 
   .logo-text {
     font-family: var(--font-display);
-    font-size: var(--fc-step-3);
+    font-size: var(--heading-text-size-large);
     color: var(--color-text-heading);
   }
 
@@ -102,7 +118,13 @@ export const navItems = [
   }
 
   .nav-links {
-    --fc-cluster-space: var(--fc-space-l);
+    --fc-cluster-space: var(--fc-space-m);
+    text-transform: uppercase;
+    font-size: var(--font-size-base);
+
+    a {
+      padding: var(--space-3xs);
+    }
   }
 
   .icon-button {

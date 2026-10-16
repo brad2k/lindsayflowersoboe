@@ -1,12 +1,21 @@
 ---
-import { getCollection } from "astro:content";
-import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
-import HeroImage from "../images/lindsay-flowers-home.png";
+import { getCollection } from "astro:content";
 import Button from "../components/Button.astro";
+import Heading from "../components/Heading.astro";
+import PhotoCredit from "../components/PhotoCredit.astro";
+import HeroImage from "../images/lindsay-flowers-home.png";
+import Layout from "../layouts/Layout.astro";
 
 const [page] = await getCollection("home");
-const { pageTitle, pageDescription, eyebrow, heading, heroSummary } = page.data;
+const {
+  pageTitle,
+  pageDescription,
+  eyebrow,
+  heading,
+  heroSummary,
+  photoCredit,
+} = page.data;
 // const concerts = (await getCollection("concerts")).sort(
 //   (a, b) => a.data.date.valueOf() - b.data.date.valueOf()
 // );
@@ -16,12 +25,15 @@ const { pageTitle, pageDescription, eyebrow, heading, heroSummary } = page.data;
   <section class="page-wrapper auto-grid">
     <div class="stack hero-text">
       <p class="eyebrow">{eyebrow}</p>
-      <h1 class="heading">{heading}</h1>
+      <Heading as="h1" variant={"large"}>{heading}</Heading>
       <p>{heroSummary}</p>
       <Button href="/bio/">View bio</Button>
     </div>
 
-    <Image src={HeroImage} alt="Lindsay Flowers holding an oboe" priority />
+    <figure>
+      <Image src={HeroImage} alt="Lindsay Flowers holding an oboe" priority />
+      <PhotoCredit credit={photoCredit} />
+    </figure>
   </section>
 </Layout>
 
@@ -31,10 +43,14 @@ const { pageTitle, pageDescription, eyebrow, heading, heroSummary } = page.data;
     container-type: inline-size;
 
     @container (width < 36.66rem) {
-      & > img {
+      & > figure {
         order: -1;
       }
     }
+  }
+
+  figure {
+    margin: 0;
   }
 
   .hero-text {

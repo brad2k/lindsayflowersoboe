@@ -36,7 +36,7 @@ const computedRel = rel ?? (external ? "noopener noreferrer" : undefined);
   {...props}
   href={href}
   class={clsx({ active })}
-  aria-current={active ? "page" : "false"}
+  aria-current={active ? "page" : undefined}
   {...computedTarget && { target: computedTarget }}
   {...computedRel && { rel: computedRel }}
 >

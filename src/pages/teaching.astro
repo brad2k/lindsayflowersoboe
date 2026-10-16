@@ -1,0 +1,97 @@
+---
+import Markdoc from "@markdoc/markdoc";
+import { Image } from "astro:assets";
+import { getCollection, render } from "astro:content";
+import Banner from "../components/Banner.astro";
+import Button from "../components/Button.astro";
+import Card from "../components/Card.astro";
+import CardHeader from "../components/CardHeader.astro";
+import Heading from "../components/Heading.astro";
+import PhotoCredit from "../components/PhotoCredit.astro";
+import HeroImage from "../images/lindsay-flowers-teaching.png";
+import Layout from "../layouts/Layout.astro";
+import PageLayout from "../layouts/PageLayout.astro";
+import MusicBar from "../components/MusicBar.astro";
+
+const [page] = await getCollection("teaching");
+const {
+  pageTitle,
+  pageDescription,
+  eyebrow,
+  heading,
+  heroSummary,
+  photoCredit,
+  cards,
+  banner,
+} = page.data;
+const { Content } = await render(page);
+
+// Card bodies are inline Markdoc strings from the Keystatic editor
+const renderInline = (source: string) =>
+  Markdoc.renderers.html(Markdoc.transform(Markdoc.parse(source).children));
+---
+
+<Layout title={pageTitle} description={pageDescription} wrapperClass="stack">
+  <PageLayout>
+    <figure slot="figure">
+      <Image src={HeroImage} alt="Lindsay Flowers holding two oboes" priority />
+      <PhotoCredit credit={photoCredit} />
+    </figure>
+
+    <div class="stack hero-text" slot="hero">
+      <h1 class="eyebrow">{eyebrow}</h1>
+      <Heading as="h2" variant={"large"}>{heading}</Heading>
+      <p>{heroSummary}</p>
+    </div>
+  </PageLayout>
+
+  <Content />
+
+  <MusicBar />
+
+  {
+    cards.length > 0 && (
+      <ul class="cards auto-grid">
+        {cards.map((card) => (
+          <Card as="li">
+            <CardHeader as="header">{card.title}</CardHeader>
+            <Fragment set:html={renderInline(card.body)} />
+          </Card>
+        ))}
+      </ul>
+    )
+  }
+
+  {
+    banner && (
+      <Banner as="aside">
+        <Heading variant={"small"}>{banner.title}</Heading>
+        {banner.body && <p>{banner.body}</p>}
+        {banner.cta && (
+          <Button slot="cta" href={banner.cta.link}>
+            {banner.cta.label}
+          </Button>
+        )}
+      </Banner>
+    )
+  }
+</Layout>
+
+<style>
+  .page-wrapper {
+    --fc-grid-space: var(--fc-space-2xl);
+  }
+
+  .hero-text {
+    --fc-stack-space: var(--fc-space-m);
+    justify-content: center;
+  }
+
+  .cards {
+    align-items: start;
+  }
+
+  .cta {
+    text-align: left;
+  }
+</style>

@@ -1,0 +1,22 @@
+---
+import type { HTMLTag, Polymorphic } from "astro/types";
+import Heading from "./Heading.astro";
+
+type Props<Component extends HTMLTag> = Polymorphic<{
+  as: Component;
+  note?: boolean;
+}>;
+
+const {
+  as: Component = "div",
+  children,
+  class: className,
+  note = false,
+  ...rest
+} = Astro.props;
+---
+
+<Component {...rest} class:list={["card-header", className]}>
+  {note && <div class="note">♪</div>}
+  <Heading as="h2" variant="small"><slot /></Heading>
+</Component>

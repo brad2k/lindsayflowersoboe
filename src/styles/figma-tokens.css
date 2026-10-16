@@ -3,15 +3,6 @@
  */
 
 :root {
-  --stone-200: #ece4dc;
-  --stone-100: rgba(0, 0, 0, 0.0784313725490196);
-  --stone-500: #726a62;
-  --stone-600: #5c534c;
-  --rose-600: #8a3763;
-  --white: #ffffff;
-  --cream-100: #f7f1ea;
-  --rose-500: #a8447a;
-  --ink-900: #2a2320;
   --color-bg-canvas: #f7f1ea;
   --color-bg-surface: #ece4dc;
   --color-text-heading: #2a2320;
@@ -35,4 +26,31 @@
   --space-xs: 0.938rem;
   --space-2xs: 0.625rem;
   --space-3xs: 0.313rem;
+  --stone-200: #ece4dc;
+  --stone-100: rgba(0, 0, 0, 0.0784313725490196);
+  --stone-500: #726a62;
+  --stone-600: #5c534c;
+  --rose-600: #8a3763;
+  --white: #ffffff;
+  --cream-100: #f7f1ea;
+  --rose-500: #a8447a;
+  --ink-900: #2a2320;
+  --font-family-body: Work Sans;
+  --font-family-heading: Cormorant Garamond;
+  --font-size-min-step-5: 2.799rem;
+  --font-size-min-step-4: 2.333rem;
+  --font-size-min-step-3: 1.944rem;
+  --font-size-min-step-2: 1.62rem;
+  --font-size-min-step-1: 1.35rem;
+  --font-size-min-step-0: 1.125rem;
+  --font-size-min-step--1: 0.938rem;
+  --font-size-min-step--2: 0.781rem;
+  --font-size-max-step-5: 3.815rem;
+  --font-size-max-step-4: 3.052rem;
+  --font-size-max-step-3: 2.441rem;
+  --font-size-max-step-2: 1.953rem;
+  --font-size-max-step-1: 1.563rem;
+  --font-size-max-step-0: 1.25rem;
+  --font-size-max-step--1: 1rem;
+  --font-size-max-step--2: 0.8rem;
 }
