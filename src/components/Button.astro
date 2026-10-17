@@ -1,23 +1,31 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 
-type Props =
-  | ({ href: string } & HTMLAttributes<"a">)
-  | ({ href?: never } & HTMLAttributes<"button">);
+type ButtonVariants = "primary" | "ghost";
 
-const { href, ...props } = Astro.props;
+type Props =
+  | ({ href: string; variant: ButtonVariants } & HTMLAttributes<"a">)
+  | ({ href?: never; variant: ButtonVariants } & HTMLAttributes<"button">);
+
+const { class: className, href, variant = "primary", ...props } = Astro.props;
 ---
 
 {
   href ? (
-    <a class="button" href={href} {...(props as HTMLAttributes<"a">)}>
+    <a
+      {...(props as HTMLAttributes<"a">)}
+      class:list={["button", className]}
+      href={href}
+      data-variant={variant}
+    >
       <slot />
     </a>
   ) : (
     <button
-      class="button"
-      type="button"
       {...(props as HTMLAttributes<"button">)}
+      class:list={["button", className]}
+      type="button"
+      data-variant={variant}
     >
       <slot />
     </button>
@@ -55,6 +63,11 @@ const { href, ...props } = Astro.props;
     &:focus-visible {
       outline: 2px solid var(--color-button-primary-bg);
       outline-offset: 2px;
+    }
+
+    &[data-variant="ghost"] {
+      background-color: transparent;
+      color: var(--color-text-link);
     }
   }
 </style>

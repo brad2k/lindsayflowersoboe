@@ -1,13 +1,15 @@
 ---
 import { Image } from "astro:assets";
-import { getCollection, render } from "astro:content";
+import { getEntry, render } from "astro:content";
 import Heading from "../components/Heading.astro";
 import PhotoCredit from "../components/PhotoCredit.astro";
 import HeroImage from "../images/lindsay-flowers-bio.png";
 import Layout from "../layouts/Layout.astro";
-import PageLayout from "../layouts/PageLayout.astro";
+import HeroLayout from "../layouts/HeroLayout.astro";
+import HeroBlock from "../components/HeroBlock.astro";
 
-const [page] = await getCollection("bio");
+const page = await getEntry("bio", "index");
+if (!page) throw new Error("Missing bio content");
 const {
   pageTitle,
   pageDescription,
@@ -20,25 +22,18 @@ const { Content } = await render(page);
 ---
 
 <Layout title={pageTitle} description={pageDescription} wrapperClass="stack">
-  <PageLayout>
+  <HeroLayout>
     <figure slot="figure">
       <Image src={HeroImage} alt="Lindsay Flowers holding two oboes" priority />
       <PhotoCredit credit={photoCredit} />
     </figure>
 
-    <div class="stack hero-text" slot="hero">
+    <HeroBlock slot="hero">
       <h1 class="eyebrow">{eyebrow}</h1>
       <Heading as="h2" variant={"large"}>{heading}</Heading>
       <p>{heroSummary}</p>
-    </div>
-  </PageLayout>
+    </HeroBlock>
+  </HeroLayout>
 
   <Content />
 </Layout>
-
-<style>
-  .hero-text {
-    --fc-stack-space: var(--fc-space-m);
-    justify-content: center;
-  }
-</style>

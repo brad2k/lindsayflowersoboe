@@ -1,13 +1,16 @@
 ---
 import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
+import { getEntry } from "astro:content";
 import Button from "../components/Button.astro";
 import Heading from "../components/Heading.astro";
 import PhotoCredit from "../components/PhotoCredit.astro";
 import HeroImage from "../images/lindsay-flowers-home.png";
 import Layout from "../layouts/Layout.astro";
+import HeroLayout from "../layouts/HeroLayout.astro";
+import HeroBlock from "../components/HeroBlock.astro";
 
-const [page] = await getCollection("home");
+const page = await getEntry("home", "index");
+if (!page) throw new Error("Missing home content");
 const {
   pageTitle,
   pageDescription,
@@ -21,40 +24,33 @@ const {
 // );
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
-  <section class="page-wrapper auto-grid">
-    <div class="stack hero-text">
+<Layout title={pageTitle} description={pageDescription} wrapperClass="stack">
+  <HeroLayout>
+    <HeroBlock slot="hero">
       <p class="eyebrow">{eyebrow}</p>
       <Heading as="h1" variant={"large"}>{heading}</Heading>
       <p>{heroSummary}</p>
-      <Button href="/bio/">View bio</Button>
-    </div>
+      <div class="cluster">
+        <Button href="/bio/">View bio</Button>
+        <Button href="/media/" variant="ghost">Explore media →</Button>
+      </div>
+    </HeroBlock>
 
-    <figure>
+    <figure slot="figure">
       <Image src={HeroImage} alt="Lindsay Flowers holding an oboe" priority />
       <PhotoCredit credit={photoCredit} />
     </figure>
-  </section>
+  </HeroLayout>
 </Layout>
 
 <style>
   .page-wrapper {
-    --fc-grid-space: var(--fc-space-2xl);
     container-type: inline-size;
 
-    @container (width < 36.66rem) {
+    @container (width > 36.66rem) {
       & > figure {
-        order: -1;
+        order: 1;
       }
     }
-  }
-
-  figure {
-    margin: 0;
-  }
-
-  .hero-text {
-    --fc-stack-space: var(--fc-space-m);
-    justify-content: center;
   }
 </style>

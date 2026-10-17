@@ -13,5 +13,12 @@ export default defineMarkdocConfig({
         class: { type: String, default: "prose flow" },
       },
     },
+    list: {
+      ...nodes.list,
+      attributes: {
+        ...nodes.list.attributes,
+        class: { type: String, default: "list" },
+      },
+    },
   },
 });

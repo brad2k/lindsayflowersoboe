@@ -1,0 +1,102 @@
+---
+import { Image } from "astro:assets";
+import { render, type CollectionEntry } from "astro:content";
+import HeroBlock from "./HeroBlock.astro";
+import Link from "./Link.astro";
+import Heading from "./Heading.astro";
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+
+interface Props {
+  entry:
+    | CollectionEntry<"recordings">
+    | CollectionEntry<"performances">
+    | CollectionEntry<"podcasts">;
+  links: {
+    label: string;
+    href?: string | null;
+    Logo: AstroComponentFactory;
+  }[];
+}
+
+const { entry, links } = Astro.props;
+const { title, image, imageAlt, releaseDate, publisherUrl } = entry.data;
+const { Content } = await render(entry);
+
+const hasLinks = links.some((link) => link.href);
+---
+
+<li class="media-item">
+  <Image src={image} alt={imageAlt} widths={[240, 480]} sizes="240px" />
+  <HeroBlock>
+    <Heading as="h2" variant={"small"}>
+      {publisherUrl ? <Link href={publisherUrl}>{title}</Link> : title}
+    </Heading>
+
+    <div class="description"><Content class="test" /></div>
+
+    <p>
+      Release date: <time datetime={releaseDate.toISOString().slice(0, 10)}>
+        {
+          releaseDate.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            timeZone: "UTC",
+          })
+        }
+      </time>
+    </p>
+
+    {
+      hasLinks && (
+        <ul class="links">
+          {links.map(
+            (link) =>
+              link.href && (
+                <li>
+                  <Link href={link.href}>
+                    <link.Logo />
+                    <span class="visually-hidden">{link.label}</span>
+                  </Link>
+                </li>
+              ),
+          )}
+        </ul>
+      )
+    }
+  </HeroBlock>
+</li>
+
+<style>
+  .media-item {
+    display: grid;
+    grid-template-columns: minmax(0, 16rem) 1fr;
+    gap: var(--space-md);
+    align-items: start;
+  }
+
+  @media (max-width: 40rem) {
+    .media-item {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+
+    svg {
+      fill: currentColor;
+    }
+  }
+
+  .description :global(.list) {
+    padding-left: 1.5rem;
+    list-style-type: disc;
+
+    li:not(:last-child) {
+      margin-bottom: var(--space-3xs, 0.35rem);
+    }
+  }
+</style>
