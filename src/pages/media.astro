@@ -1,0 +1,93 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import Heading from "../components/Heading.astro";
+import MediaItem from "../components/MediaItem.astro";
+import MediaSection from "../components/MediaSection.astro";
+import Layout from "../layouts/Layout.astro";
+import HeroLayout from "../layouts/HeroLayout.astro";
+import HeroBlock from "../components/HeroBlock.astro";
+import AppleMusicLogo from "../images/applemusic.svg";
+import YouTubeMusicLogo from "../images/youtubemusic.svg";
+import SpotifyLogo from "../images/spotify.svg";
+import MusicBar from "../components/MusicBar.astro";
+
+const page = await getEntry("media", "index");
+if (!page) throw new Error("Missing media content");
+
+const { pageTitle, pageDescription, eyebrow, heading } = page.data;
+
+const newestFirst = (a: { data: { releaseDate: Date } }, b: typeof a) =>
+  b.data.releaseDate.getTime() - a.data.releaseDate.getTime();
+
+const recordings = (await getCollection("recordings")).sort(newestFirst);
+// const performances = (await getCollection("performances")).sort(newestFirst);
+const podcasts = (await getCollection("podcasts")).sort(newestFirst);
+
+const streamingLinks = (data: {
+  spotifyUrl?: string | null;
+  appleMusicUrl?: string | null;
+  youtubeMusicUrl?: string | null;
+}) => [
+  { label: "Spotify", href: data.spotifyUrl, Logo: SpotifyLogo },
+  { label: "Apple Music", href: data.appleMusicUrl, Logo: AppleMusicLogo },
+  {
+    label: "YouTube Music",
+    href: data.youtubeMusicUrl,
+    Logo: YouTubeMusicLogo,
+  },
+];
+---
+
+<Layout title={pageTitle} description={pageDescription} wrapperClass="stack">
+  <HeroLayout>
+    <HeroBlock slot="hero">
+      <p class="eyebrow">{eyebrow}</p>
+      <Heading as="h1" variant={"large"}>{heading}</Heading>
+    </HeroBlock>
+  </HeroLayout>
+
+  {
+    recordings.length > 0 && (
+      <MediaSection id="recordings" title="Recordings">
+        {recordings.map((entry, index) => (
+          <>
+            <MediaItem entry={entry} links={streamingLinks(entry.data)} />
+            {index % 2 === 0 && <MusicBar as="li" />}
+          </>
+        ))}
+      </MediaSection>
+    )
+  }
+
+  <!-- {
+    performances.length > 0 && (
+      <MediaSection id="performances" title="Performances">
+        {performances.map((entry) => (
+          <MediaItem
+            entry={entry}
+            links={[
+              {
+                label: "YouTube",
+                href: entry.data.youtubeUrl,
+                Logo: YouTubeMusicLogo,
+              },
+            ]}
+          />
+        ))}
+      </MediaSection>
+    )
+  } -->
+
+  {
+    podcasts.length > 0 && (
+      <MediaSection id="podcasts" title="Podcasts">
+        {podcasts.map((entry, index) => (
+          <>
+            <MediaItem entry={entry} links={streamingLinks(entry.data)} />
+            {index % 2 === 0 && <MusicBar as="li" />}
+          </>
+        ))}
+      </MediaSection>
+    )
+  }
+</Layout>

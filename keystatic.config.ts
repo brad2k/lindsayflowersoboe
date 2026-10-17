@@ -53,6 +53,36 @@ const heroImage = fields.object(
   { label: "Hero image" },
 );
 
+// Shared by recordings, performances and podcasts. Each collection stores its
+// art under src/images/<collection>/<slug>/. Entries are flat files
+// (src/content/<collection>/<slug>.mdoc), so the path is two levels up.
+const mediaItemFields = (collectionName: string) => ({
+  title: fields.slug({ name: { label: "Title" } }),
+  publisherUrl: fields.url({ label: "Publisher URL" }),
+  releaseDate: fields.date({
+    label: "Release date",
+    validation: { isRequired: true },
+  }),
+  image: fields.image({
+    label: "Image",
+    directory: `src/images/${collectionName}`,
+    publicPath: `../../images/${collectionName}/`,
+    validation: { isRequired: true },
+  }),
+  imageAlt: fields.text({
+    label: "Image alt text",
+    description: "Describe the image for screen readers.",
+    validation: { isRequired: true },
+  }),
+  description: fields.markdoc({ label: "Description" }),
+});
+
+const streamingLinks = {
+  spotifyUrl: fields.url({ label: "Spotify URL" }),
+  appleMusicUrl: fields.url({ label: "Apple Music URL" }),
+  youtubeMusicUrl: fields.url({ label: "YouTube Music URL" }),
+};
+
 const singletonPageSchema = {
   pageTitle: fields.text({
     label: "Page Title",
@@ -67,6 +97,20 @@ const singletonPageSchema = {
   heading: fields.text({ label: "Heading", validation: { isRequired: true } }),
 };
 
+// Hero block shared by the home, bio and teaching pages.
+const heroFields = ({ summaryRequired }: { summaryRequired: boolean }) => ({
+  heroSummary: fields.text({
+    label: "Hero summary",
+    validation: { isRequired: summaryRequired },
+    multiline: true,
+  }),
+  photoCredit: fields.text({
+    label: "Photo credit",
+    description: "Leave blank to hide the photo caption.",
+  }),
+  heroImage,
+});
+
 export default config({
   storage: {
     kind: "local",
@@ -76,32 +120,8 @@ export default config({
       label: "Home Page",
       path: "src/content/home/",
       schema: {
-        pageTitle: fields.text({
-          label: "Page Title",
-          validation: { isRequired: true },
-        }),
-        pageDescription: fields.text({
-          label: "Page Description",
-          validation: { isRequired: true },
-        }),
-        eyebrow: fields.text({
-          label: "Eyebrow",
-          validation: { isRequired: true },
-        }),
-        heading: fields.text({
-          label: "Heading",
-          validation: { isRequired: true },
-        }),
-        heroSummary: fields.text({
-          label: "Hero summary",
-          validation: { isRequired: true },
-          multiline: true,
-        }),
-        photoCredit: fields.text({
-          label: "Photo credit",
-          description: "Leave blank to hide the photo caption.",
-        }),
-        heroImage,
+        ...singletonPageSchema,
+        ...heroFields({ summaryRequired: true }),
       },
     }),
     bio: singleton({
@@ -109,32 +129,8 @@ export default config({
       path: "src/content/bio/",
       format: { contentField: "bio" },
       schema: {
-        pageTitle: fields.text({
-          label: "Page Title",
-          validation: { isRequired: true },
-        }),
-        pageDescription: fields.text({
-          label: "Page Description",
-          validation: { isRequired: true },
-        }),
-        eyebrow: fields.text({
-          label: "Eyebrow",
-          validation: { isRequired: true },
-        }),
-        heading: fields.text({
-          label: "Heading",
-          validation: { isRequired: true },
-        }),
-        heroSummary: fields.text({
-          label: "Hero summary",
-          validation: { isRequired: true },
-          multiline: true,
-        }),
-        photoCredit: fields.text({
-          label: "Photo credit",
-          description: "Leave blank to hide the photo caption.",
-        }),
-        heroImage,
+        ...singletonPageSchema,
+        ...heroFields({ summaryRequired: true }),
         bio: fields.markdoc({
           label: "Biography",
         }),
@@ -150,31 +146,8 @@ export default config({
       path: "src/content/teaching/",
       format: { contentField: "teaching" },
       schema: {
-        pageTitle: fields.text({
-          label: "Page Title",
-          validation: { isRequired: true },
-        }),
-        pageDescription: fields.text({
-          label: "Page Description",
-          validation: { isRequired: true },
-        }),
-        eyebrow: fields.text({
-          label: "Eyebrow",
-          validation: { isRequired: true },
-        }),
-        heading: fields.text({
-          label: "Heading",
-          validation: { isRequired: true },
-        }),
-        heroSummary: fields.text({
-          label: "Hero summary",
-          multiline: true,
-        }),
-        photoCredit: fields.text({
-          label: "Photo credit",
-          description: "Leave blank to hide the photo caption.",
-        }),
-        heroImage,
+        ...singletonPageSchema,
+        ...heroFields({ summaryRequired: false }),
         cards: fields.array(teachingCard, {
           label: "Cards",
           itemLabel: (props) => props.fields.title.value,
@@ -206,6 +179,36 @@ export default config({
           validation: { isRequired: true },
         }),
         details: fields.markdoc({ label: "Details" }),
+      },
+    }),
+    recordings: collection({
+      label: "Recordings",
+      slugField: "title",
+      path: "src/content/recordings/*",
+      format: { contentField: "description" },
+      schema: {
+        ...mediaItemFields("recordings"),
+        ...streamingLinks,
+      },
+    }),
+    performances: collection({
+      label: "Performances",
+      slugField: "title",
+      path: "src/content/performances/*",
+      format: { contentField: "description" },
+      schema: {
+        ...mediaItemFields("performances"),
+        youtubeUrl: fields.url({ label: "YouTube URL" }),
+      },
+    }),
+    podcasts: collection({
+      label: "Podcasts",
+      slugField: "title",
+      path: "src/content/podcasts/*",
+      format: { contentField: "description" },
+      schema: {
+        ...mediaItemFields("podcasts"),
+        ...streamingLinks,
       },
     }),
   },

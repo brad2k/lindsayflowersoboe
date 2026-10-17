@@ -1,16 +1,58 @@
-// @ts-ignore
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 import { defineCollection } from "astro:content";
 
+// Collections hold one directory of entries per item; singletons hold a single
+// index file, whose extension depends on whether the page has a Markdoc body.
+const entries = (name: string) =>
+  glob({ pattern: "**/*.mdoc", base: `./src/content/${name}` });
+const singletonEntry = (name: string, extension = "{yaml,yml,json}") =>
+  glob({ pattern: `index.${extension}`, base: `./src/content/${name}` });
+
 const concerts = defineCollection({
-  loader: glob({ pattern: "**/*.mdoc", base: "./src/content/concerts" }),
+  loader: entries("concerts"),
   schema: z.object({
     eventTitle: z.string(),
     date: z.coerce.date(),
     time: z.string().optional(),
     timeZone: z.string(),
   }),
+});
+
+// Shared by recordings, performances and podcasts. Optional URLs are empty
+// when unset in Keystatic.
+const optionalUrl = z.url().nullish();
+
+const mediaItem = ({ image }: { image: () => z.ZodType }) => ({
+  title: z.string(),
+  publisherUrl: optionalUrl,
+  releaseDate: z.coerce.date(),
+  image: image(),
+  imageAlt: z.string(),
+});
+
+const streamingLinks = {
+  spotifyUrl: optionalUrl,
+  appleMusicUrl: optionalUrl,
+  youtubeMusicUrl: optionalUrl,
+};
+
+const recordings = defineCollection({
+  loader: entries("recordings"),
+  schema: ({ image }) =>
+    z.object({ ...mediaItem({ image }), ...streamingLinks }),
+});
+
+const performances = defineCollection({
+  loader: entries("performances"),
+  schema: ({ image }) =>
+    z.object({ ...mediaItem({ image }), youtubeUrl: optionalUrl }),
+});
+
+const podcasts = defineCollection({
+  loader: entries("podcasts"),
+  schema: ({ image }) =>
+    z.object({ ...mediaItem({ image }), ...streamingLinks }),
 });
 
 const singletonPageSchema = z.object({
@@ -30,46 +72,35 @@ const heroImage = z
     path: ["alt"],
   });
 
+const heroFields = {
+  photoCredit: z.string().optional(),
+  heroImage,
+};
+
 const home = defineCollection({
-  loader: glob({
-    pattern: "index.{yaml,yml,json}",
-    base: "./src/content/home",
-  }),
-  schema: z.object({
-    pageTitle: z.string(),
-    pageDescription: z.string(),
-    eyebrow: z.string(),
-    heading: z.string(),
+  loader: singletonEntry("home"),
+  schema: singletonPageSchema.extend({
     heroSummary: z.string(),
-    photoCredit: z.string().optional(),
-    heroImage,
+    ...heroFields,
   }),
 });
 
 const bio = defineCollection({
-  loader: glob({ pattern: "index.mdoc", base: "./src/content/bio" }),
-  schema: z.object({
-    pageTitle: z.string(),
-    pageDescription: z.string(),
-    eyebrow: z.string(),
-    heading: z.string(),
+  loader: singletonEntry("bio", "mdoc"),
+  schema: singletonPageSchema.extend({
     heroSummary: z.string(),
-    photoCredit: z.string().optional(),
-    heroImage,
+    ...heroFields,
   }),
 });
 
 const media = defineCollection({
-  loader: glob({
-    pattern: "index.{yaml,yml,json}",
-    base: "./src/content/media",
-  }),
+  loader: singletonEntry("media"),
   schema: singletonPageSchema,
 });
 
 // Keystatic stores an optional group as { discriminant, value }; flatten it
 // so the page only sees the value when the group is switched on.
-const optionalGroup = <T extends z.z.ZodType>(group: T) =>
+const optionalGroup = <T extends z.ZodType>(group: T) =>
   z
     .object({ discriminant: z.boolean(), value: group.nullish() })
     .transform((field) =>
@@ -78,11 +109,10 @@ const optionalGroup = <T extends z.z.ZodType>(group: T) =>
     .optional();
 
 const teaching = defineCollection({
-  loader: glob({ pattern: "index.mdoc", base: "./src/content/teaching" }),
+  loader: singletonEntry("teaching", "mdoc"),
   schema: singletonPageSchema.extend({
     heroSummary: z.string().optional(),
-    photoCredit: z.string().optional(),
-    heroImage,
+    ...heroFields,
     cards: z
       .array(
         z.object({
@@ -108,4 +138,13 @@ const teaching = defineCollection({
   }),
 });
 
-export const collections = { concerts, home, bio, media, teaching };
+export const collections = {
+  concerts,
+  home,
+  bio,
+  media,
+  teaching,
+  recordings,
+  performances,
+  podcasts,
+};

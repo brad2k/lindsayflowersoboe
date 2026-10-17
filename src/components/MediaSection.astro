@@ -1,0 +1,44 @@
+---
+import Heading from "./Heading.astro";
+
+interface Props {
+  id: string;
+  title: string;
+}
+
+const { id, title } = Astro.props;
+---
+
+<section class="stack media-section" aria-labelledby={id}>
+  <Heading as="h2" variant="medium" id={id} class="heading-line">
+    {title}
+  </Heading>
+
+  <ul class="stack media-list">
+    <slot />
+  </ul>
+</section>
+
+<style>
+  .media-section {
+    --fc-stack-space: var(--fc-space-m);
+  }
+
+  .media-list {
+    --fc-stack-space: var(--fc-space-l);
+    font-size: var(--font-size-base);
+  }
+
+  .heading-line {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+
+    &::after {
+      content: "";
+      height: 1px;
+      background-color: var(--color-border-border);
+      flex: 1;
+    }
+  }
+</style>

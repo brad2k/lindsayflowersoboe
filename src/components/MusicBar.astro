@@ -1,9 +1,24 @@
-<div class="music-bar" aria-hiden="true"><span class="note">♪</span></div>
+---
+import type { HTMLTag, Polymorphic } from "astro/types";
+
+type Props<Component extends HTMLTag> = Polymorphic<{
+  as: Component;
+}>;
+
+const { as: Component = "div" } = Astro.props;
+---
+
+<Component class="music-bar" aria-hiden="true">
+  <span class="note">♪</span>
+</Component>
 
 <style>
   .music-bar {
     color: var(--color-text-accent);
     font-size: var(--font-size-xl);
+    width: 100%;
+    max-width: 70ch;
+    margin-inline: auto;
   }
 
   .note {
@@ -20,7 +35,7 @@
         currentColor 50%,
         transparent
       );
-      height: 2px;
+      height: 1px;
       flex: 1;
     }
   }
