@@ -1,3 +1,7 @@
 [build]
   command = "npm run build"
   publish = "dist"
+
+[build.environment]
+  # Public GitHub app slug (not a secret); its value is a common word that trips the scanner.
+  SECRETS_SCAN_OMIT_KEYS = "PUBLIC_KEYSTATIC_GITHUB_APP_SLUG"
