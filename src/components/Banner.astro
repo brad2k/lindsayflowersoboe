@@ -1,0 +1,39 @@
+---
+import type { HTMLTag, Polymorphic } from "astro/types";
+
+type Props<Component extends HTMLTag> = Polymorphic<{
+  as: Component;
+}>;
+
+const {
+  as: Component = "aside",
+  children,
+  class: className,
+  ...rest
+} = Astro.props;
+---
+
+<Component {...rest} class:list={["banner", className]}>
+  <div class="flow"><slot /></div>
+  {Astro.slots.has("cta") && <slot name="cta" />}
+</Component>
+
+<style>
+  .banner {
+    --banner-padding: var(--space-sm);
+    --banner-font-size: var(--font-size-base);
+    --banner-border-color: var(--color-border-border);
+    --banner-color-bg: var(--color-bg-surface);
+
+    display: flex;
+    gap: var(--space-xs);
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: start;
+    text-align: var(--banner-text-alignment, left);
+    padding: var(--banner-padding);
+    background-color: var(--banner-color-bg);
+    font-size: var(--banner-font-size);
+    border: 1px solid var(--banner-border-color);
+  }
+</style>

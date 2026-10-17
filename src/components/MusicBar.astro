@@ -1,0 +1,27 @@
+<div class="music-bar" aria-hiden="true"><span class="note">♪</span></div>
+
+<style>
+  .music-bar {
+    color: var(--color-text-accent);
+    font-size: var(--font-size-xl);
+  }
+
+  .note {
+    display: flex;
+    gap: var(--space-2xs);
+    align-items: center;
+
+    &:before,
+    &:after {
+      content: "";
+      background: linear-gradient(
+        to right,
+        transparent,
+        currentColor 50%,
+        transparent
+      );
+      height: 2px;
+      flex: 1;
+    }
+  }
+</style>

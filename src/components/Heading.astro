@@ -1,0 +1,39 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"h1"> {
+  variant?: "small" | "medium" | "large";
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+}
+
+const {
+  class: className,
+  as: Tag = "h2",
+  variant = "medium",
+  ...rest
+} = Astro.props;
+---
+
+<Tag {...rest} class:list={["heading", className]} data-variant={variant}>
+  <slot />
+</Tag>
+
+<style>
+  .heading {
+    letter-spacing: -0.02em;
+    font-weight: var(--fc-font-weight-regular);
+    font-size: var(--heading-font-size, var(--fc-step-1));
+    line-height: var(--heading-line-height, var(--line-height-standard));
+    font-family: var(--font-display);
+    color: var(--color-text-heading);
+  }
+
+  [data-variant="small"] {
+    --heading-font-size: var(--fc-step-0);
+  }
+
+  [data-variant="large"] {
+    --heading-font-size: var(--fc-step-3);
+    --heading-line-height: var(--line-height-tight);
+  }
+</style>

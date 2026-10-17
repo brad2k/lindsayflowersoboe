@@ -5,6 +5,7 @@ import Navigation from "../components/Navigation.astro";
 import Footer from "../components/Footer.astro";
 import { Font, getImage } from "astro:assets";
 import socialImage from "../images/lindsay-flowers-social.jpg";
+import { SITE } from "../../consts";
 
 export interface Props {
   title: string;
@@ -21,47 +22,48 @@ const pageDescription = description || defaultDescription;
 const schema = {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Lindsay Flowers",
-  "jobTitle": "Assistant Professor of Oboe",
-  "description": "Assistant Professor of Oboe at the University of Wisconsin–Madison Mead Witter School of Music, recording artist, and ensemble performer",
-  "image": "https://www.lindsayflowersoboe.com/images/lindsay-flowers-social.jpg",
-  "url": "https://www.lindsayflowersoboe.com/",
-  "email": "mailto:lindsay.flowers@wisc.edu",
-  "affiliation": [
+  name: "Lindsay Flowers",
+  jobTitle: "Assistant Professor of Oboe",
+  description:
+    "Assistant Professor of Oboe at the University of Wisconsin–Madison Mead Witter School of Music, recording artist, and ensemble performer",
+  image: "https://www.lindsayflowersoboe.com/images/lindsay-flowers-social.jpg",
+  url: "https://www.lindsayflowersoboe.com/",
+  email: SITE.email,
+  affiliation: [
     {
       "@type": "EducationalOrganization",
-      "name": "University of Wisconsin–Madison Mead Witter School of Music",
-      "url": "https://music.wisc.edu/"
+      name: "University of Wisconsin–Madison Mead Witter School of Music",
+      url: "https://music.wisc.edu/",
     },
     {
       "@type": "MusicGroup",
-      "name": "Madison Symphony Orchestra",
-      "url": "https://madisonsymphony.org/"
+      name: "Madison Symphony Orchestra",
+      url: "https://madisonsymphony.org/",
     },
     {
       "@type": "MusicGroup",
-      "name": "Wisconsin Chamber Orchestra",
-      "url": "https://wcoconcerts.org/"
+      name: "Wisconsin Chamber Orchestra",
+      url: "https://wcoconcerts.org/",
     },
     {
       "@type": "EducationalOrganization",
-      "name": "Interlochen Center for the Arts",
-      "url": "https://www.interlochen.org/"
-    }
+      name: "Interlochen Center for the Arts",
+      url: "https://www.interlochen.org/",
+    },
   ],
-  "alumniOf": {
+  alumniOf: {
     "@type": "EducationalOrganization",
-    "name": "Indiana University"
+    name: "Indiana University",
   },
-  "award": "F. Lorée Artist",
-  "knowsAbout": ["Oboe", "English Horn", "Woodwind Performance"],
-  "sameAs": [
+  award: "F. Lorée Artist",
+  knowsAbout: ["Oboe", "English Horn", "Woodwind Performance"],
+  sameAs: [
     "https://music.wisc.edu/staff/flowers-lindsay/",
     "https://madisonsymphony.org/about/performers/msomusicianroster/",
     "https://wcoconcerts.org/profiles/lindsay-flowers",
     "https://www.instagram.com/lindsayflowerskoh/",
-    "https://www.youtube.com/@LindsayFlowersOboe"
-  ]
+    "https://www.youtube.com/@LindsayFlowersOboe",
+  ],
 };
 
 const jsonLd = JSON.stringify(schema);

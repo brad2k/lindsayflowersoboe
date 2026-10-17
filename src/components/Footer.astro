@@ -2,13 +2,16 @@
 import { navItems } from "./Navigation.astro";
 import Link from "./Link.astro";
 import Oboe from "../images/oboe.svg";
-const emailAddress = "lindsay.flowers@wisc.edu";
+import UwLogo from "../images/uw-logo.svg";
+import { SITE } from "../../consts";
+const year = new Date().getFullYear();
 ---
 
 <footer aria-label="Primary">
-  <div class="wrapper repel">
+  <section class="wrapper repel">
     <div class="footer-left stack">
-      <span>© 2026 Lindsay Flowers</span><Oboe aria-hidden />
+      <Link href="https://www.wisc.edu/"><UwLogo class="uw-crest" /></Link>
+      <Oboe aria-hidden />
     </div>
     <div class="footer-right">
       <nav class="stack" aria-labelledby="footer-connect">
@@ -16,8 +19,8 @@ const emailAddress = "lindsay.flowers@wisc.edu";
         <ul class="footer-list stack">
           <li>
             <a
-              href={`mailto:${emailAddress}?subject=Hello`}
-              aria-label={`Send an email to ${emailAddress}`}
+              href={`mailto:${SITE.email}?subject=Hello`}
+              aria-label={`Send an email to ${SITE.email}`}
             >
               <span>Email</span>
               <span class="visually-hidden">Opens in new window</span>
@@ -48,7 +51,6 @@ const emailAddress = "lindsay.flowers@wisc.edu";
       <nav class="stack" aria-labelledby="footer-explore">
         <h3 class="footer-category" id="footer-explore">Explore</h3>
         <ul class="footer-list stack">
-          <!-- <li><a href="/">Home</a></li> -->
           {
             navItems.map((i) => (
               <li>
@@ -59,54 +61,82 @@ const emailAddress = "lindsay.flowers@wisc.edu";
         </ul>
       </nav>
     </div>
-  </div>
-
-  <style>
-    footer {
-      margin-block-start: auto;
-      color: var(--color-text-footer);
-      border-top: 1px solid var(--color-border-border);
-      padding-block: var(--fc-space-s);
-      font-size: var(--fc-step--1);
-
-      a:hover {
-        text-decoration-line: underline;
-        text-underline-offset: var(--offset-text-underline);
-      }
-    }
-
-    .wrapper {
-      --fc-repel-space: var(--fc-space-l);
-    }
-
-    .footer-left {
-      align-self: start;
-    }
-
-    .footer-right {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--fc-space-xl);
-    }
-
-    nav {
-      --fc-stack-space: var(--fc-space-xs);
-
-      a {
-        color: var(--color-text-footer);
-      }
-    }
-
-    .footer-category {
-      font-weight: var(--fc-font-weight-semi-bold);
-      font-family: var(--font-body);
-      font-size: inherit;
-      text-transform: uppercase;
-      color: currentColor;
-    }
-
-    .footer-list {
-      --fc-stack-space: var(--fc-space-3xs);
-    }
-  </style>
+    <p class="copyright cluster">
+      <span
+        >©{year} Board of Regents of the <Link href="https://www.wisc.edu/"
+          >University of Wisconsin System</Link
+        >.
+      </span>
+      <span>
+        <Link href="https://www.wisc.edu/privacy-notice/" rel="privacy-policy"
+          >Privacy notice</Link
+        >
+      </span>
+      <span class="feedback"
+        >Feedback, questions or accessibility issues: {SITE.email}</span
+      >
+    </p>
+  </section>
 </footer>
+
+<style>
+  footer {
+    margin-block-start: auto;
+    color: var(--color-text-footer);
+    border-top: 1px solid var(--color-border-border);
+    padding-block: var(--fc-space-s);
+    font-size: var(--fc-step--1);
+
+    a:hover {
+      text-decoration-line: underline;
+      text-underline-offset: var(--offset-text-underline);
+    }
+  }
+
+  .wrapper {
+    --fc-repel-space: var(--fc-space-l);
+  }
+
+  .footer-left {
+    align-items: center;
+  }
+
+  .footer-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--fc-space-xl);
+  }
+
+  nav {
+    --fc-stack-space: var(--fc-space-xs);
+
+    a {
+      color: var(--color-text-footer);
+    }
+  }
+
+  .footer-category {
+    font-weight: var(--fc-font-weight-semi-bold);
+    font-family: var(--font-body);
+    font-size: inherit;
+    text-transform: uppercase;
+    color: currentColor;
+  }
+
+  .footer-list {
+    --fc-stack-space: var(--fc-space-3xs);
+  }
+
+  .copyright {
+    font-size: var(--font-size-subtle);
+  }
+
+  .uw-crest {
+    width: 150px;
+    fill: var(--color-text-footer);
+
+    &:hover {
+      fill: var(--color-text-link);
+    }
+  }
+</style>

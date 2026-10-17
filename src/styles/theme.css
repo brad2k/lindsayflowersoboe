@@ -3,11 +3,17 @@
 :root {
   --font-display: var(--font-Garamond);
   --font-body: var(--font-WorkSans);
+  --line-height-standard: 1.4;
+  --line-height-tight: 1.2;
 
   --offset-text-underline: 0.18em;
-}
 
-:is(h1, h2, h3, h4, h5, h6) {
-  font-family: var(--font-display);
-  color: var(--color-text-heading);
+  --font-size-subtle: var(--fc-step--2);
+  --font-size-base: var(--fc-step--1);
+  --font-size-l: var(--fc-step-0);
+  --font-size-xl: var(--fc-step-1);
+
+  --heading-text-size-small: var(--fc-step-0);
+  --heading-text-size-medium: var(--fc-step-1);
+  --heading-text-size-large: var(--fc-step-3);
 }

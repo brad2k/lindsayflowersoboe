@@ -20,6 +20,16 @@ const singletonPageSchema = z.object({
   heading: z.string(),
 });
 
+// Hero photo fields from Keystatic. Alt text is required whenever an image is
+// set, which Keystatic can't check on its own.
+const heroImage = z
+  .object({ image: z.string().nullish(), alt: z.string().nullish() })
+  .nullish()
+  .refine((hero) => !hero?.image || Boolean(hero.alt?.trim()), {
+    message: "Alt text is required when a hero image is set",
+    path: ["alt"],
+  });
+
 const home = defineCollection({
   loader: glob({
     pattern: "index.{yaml,yml,json}",
@@ -31,6 +41,8 @@ const home = defineCollection({
     eyebrow: z.string(),
     heading: z.string(),
     heroSummary: z.string(),
+    photoCredit: z.string().optional(),
+    heroImage,
   }),
 });
 
@@ -42,6 +54,8 @@ const bio = defineCollection({
     eyebrow: z.string(),
     heading: z.string(),
     heroSummary: z.string(),
+    photoCredit: z.string().optional(),
+    heroImage,
   }),
 });
 
@@ -53,12 +67,45 @@ const media = defineCollection({
   schema: singletonPageSchema,
 });
 
+// Keystatic stores an optional group as { discriminant, value }; flatten it
+// so the page only sees the value when the group is switched on.
+const optionalGroup = <T extends z.z.ZodType>(group: T) =>
+  z
+    .object({ discriminant: z.boolean(), value: group.nullish() })
+    .transform((field) =>
+      field.discriminant ? (field.value ?? undefined) : undefined,
+    )
+    .optional();
+
 const teaching = defineCollection({
-  loader: glob({
-    pattern: "index.{yaml,yml,json}",
-    base: "./src/content/teaching",
+  loader: glob({ pattern: "index.mdoc", base: "./src/content/teaching" }),
+  schema: singletonPageSchema.extend({
+    heroSummary: z.string().optional(),
+    photoCredit: z.string().optional(),
+    heroImage,
+    cards: z
+      .array(
+        z.object({
+          title: z.string(),
+          // Inline Markdoc (bold, links), rendered in teaching.astro
+          body: z.string(),
+        }),
+      )
+      .max(3)
+      .default([]),
+    banner: optionalGroup(
+      z.object({
+        title: z.string(),
+        body: z.string().optional(),
+        cta: optionalGroup(
+          z.object({
+            label: z.string(),
+            link: z.url(),
+          }),
+        ),
+      }),
+    ),
   }),
-  schema: singletonPageSchema,
 });
 
 export const collections = { concerts, home, bio, media, teaching };
