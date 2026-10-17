@@ -1,6 +1,8 @@
 /* Overrides to fluff-css */
 
 :root {
+  color-scheme: light;
+
   --font-display: var(--font-Garamond);
   --font-body: var(--font-WorkSans);
   --line-height-standard: 1.4;
