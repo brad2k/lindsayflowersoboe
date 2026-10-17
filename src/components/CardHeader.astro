@@ -17,6 +17,21 @@ const {
 ---
 
 <Component {...rest} class:list={["card-header", className]}>
-  {note && <div class="note">♪</div>}
-  <Heading as="h2" variant="small"><slot /></Heading>
+  {
+    note && (
+      <div class="note" aria-hidden>
+        ♪
+      </div>
+    )
+  }
+  <Heading as="h3" variant="small"><slot /></Heading>
 </Component>
+
+<style>
+  .note {
+    text-align: center;
+    font-size: var(--font-size-l);
+    margin-bottom: 1em;
+    color: var(--color-text-accent);
+  }
+</style>

@@ -4,8 +4,8 @@ import type { HTMLAttributes } from "astro/types";
 type ButtonVariants = "primary" | "ghost";
 
 type Props =
-  | ({ href: string; variant: ButtonVariants } & HTMLAttributes<"a">)
-  | ({ href?: never; variant: ButtonVariants } & HTMLAttributes<"button">);
+  | ({ href: string; variant?: ButtonVariants } & HTMLAttributes<"a">)
+  | ({ href?: never; variant?: ButtonVariants } & HTMLAttributes<"button">);
 
 const { class: className, href, variant = "primary", ...props } = Astro.props;
 ---

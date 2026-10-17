@@ -19,16 +19,17 @@ interface Props {
 }
 
 const { entry, links } = Astro.props;
+const { id } = entry;
 const { title, image, imageAlt, releaseDate, publisherUrl } = entry.data;
 const { Content } = await render(entry);
 
 const hasLinks = links.some((link) => link.href);
 ---
 
-<li class="media-item">
+<li class="media-item" aria-labelledby={`heading-${id}`}>
   <Image src={image} alt={imageAlt} widths={[240, 480]} sizes="240px" />
   <HeroBlock>
-    <Heading as="h2" variant={"small"}>
+    <Heading as="h3" variant={"small"} id={`heading-${id}`}>
       {publisherUrl ? <Link href={publisherUrl}>{title}</Link> : title}
     </Heading>
 

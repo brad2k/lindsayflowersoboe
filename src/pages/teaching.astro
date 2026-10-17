@@ -67,7 +67,9 @@ const renderInline = (source: string) =>
   {
     banner && (
       <Banner as="aside">
-        <Heading variant={"small"}>{banner.title}</Heading>
+        <Heading as="h3" variant={"small"}>
+          {banner.title}
+        </Heading>
         {banner.body && <p>{banner.body}</p>}
         {banner.cta && (
           <Button slot="cta" href={banner.cta.link}>
