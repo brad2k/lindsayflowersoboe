@@ -1,6 +1,5 @@
 ---
 import type { HTMLAttributes } from "astro/types";
-import clsx from "clsx";
 
 interface Props extends HTMLAttributes<"a"> {
   href: string;
@@ -35,7 +34,7 @@ const computedRel = rel ?? (external ? "noopener noreferrer" : undefined);
 <a
   {...props}
   href={href}
-  class={clsx({ active })}
+  class:list={[{ active }]}
   aria-current={active ? "page" : undefined}
   {...computedTarget && { target: computedTarget }}
   {...computedRel && { rel: computedRel }}
