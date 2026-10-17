@@ -1,5 +1,5 @@
 import markdoc from "@astrojs/markdoc";
-import node from "@astrojs/node";
+import netlify from "@astrojs/netlify";
 import react from "@astrojs/react";
 import keystatic from "@keystatic/astro";
 import { defineConfig, fontProviders, svgoOptimizer } from "astro/config";
@@ -33,6 +33,6 @@ export default defineConfig({
     },
   ],
 
-  adapter: node({ mode: "standalone" }), // required for Keystatic's on-demand admin routes to build; Netlify never runs it as long as the publish dir is dist/client
+  adapter: netlify(), // Keystatic's admin and GitHub OAuth routes run on demand as Netlify functions; pages stay prerendered
   integrations: [react(), markdoc(), keystatic(), sitemap()],
 });

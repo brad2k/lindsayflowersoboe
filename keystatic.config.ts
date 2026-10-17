@@ -112,8 +112,14 @@ const heroFields = ({ summaryRequired }: { summaryRequired: boolean }) => ({
 });
 
 export default config({
-  storage: {
-    kind: "local",
+  // Local files in dev; GitHub (commits to the repo) in production.
+  storage: import.meta.env.PROD
+    ? { kind: "github", repo: { owner: "brad2k", name: "lindsayflowersoboe" } }
+    : { kind: "local" },
+  ui: {
+    brand: {
+      name: "Lindsay Flowers Oboe",
+    },
   },
   singletons: {
     home: singleton({
