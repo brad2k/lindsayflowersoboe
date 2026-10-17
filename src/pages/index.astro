@@ -30,8 +30,10 @@ const {
       <p class="eyebrow">{eyebrow}</p>
       <Heading as="h1" variant={"large"}>{heading}</Heading>
       <p>{heroSummary}</p>
-      <Button href="/bio/">View bio</Button>
-      <Button href="/media/">Explore media →</Button>
+      <div class="cluster">
+        <Button href="/bio/">View bio</Button>
+        <Button href="/media/" variant="ghost">Explore media →</Button>
+      </div>
     </HeroBlock>
 
     <figure slot="figure">
